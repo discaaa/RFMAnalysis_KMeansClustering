@@ -1,4 +1,11 @@
 import streamlit as st
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parents[2]
+
+objectives_path = BASE_DIR / "Images" / "objectives.jpg"
+kmeans_path = BASE_DIR / "Images" / "kmeans.avif"
+rfm_path = BASE_DIR / "Images" / "rfm.avif"
 
 st.markdown("""
 <div style='text-align: center; padding: 20px 0;'>
@@ -197,7 +204,7 @@ st.markdown("""
     </h1>
     """, unsafe_allow_html=True)
 
-st.image("../Images/objectives.jpg", caption="Project Objectives")
+st.image(str(objectives_path))
 
 obj1, obj2, obj3 = st.columns(3)
 
@@ -260,7 +267,7 @@ st.markdown("""
 col1, col2 = st.columns([1,1], gap="medium")
 
 with col1:
-    st.image("../Images/rfm.avif", use_container_width=True)
+    st.image(str(rfm_path))
     st.markdown("""
         <div class='custom-card'>
 
@@ -324,7 +331,7 @@ with col3:
     """, unsafe_allow_html=True)
 
 with col4:
-    st.image("../Images/kmeans.avif", use_container_width=True)
+    st.image(str(kmeans_path))
     st.markdown("""
     <div class='custom-card'>
 

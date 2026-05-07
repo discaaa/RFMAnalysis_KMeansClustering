@@ -3,10 +3,15 @@ import pandas as pd
 import pickle
 import numpy as np
 
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parents[2]
+dataset_path = BASE_DIR / "Dataset" / "online_retail.csv"
+dataset = pd.read_csv(dataset_path)
 # Load Data & Model
-@st.cache_data()
-def load_data():
-    return pd.read_csv(".././Dataset/online_retail.csv")
+# @st.cache_data()
+# def load_data():
+#     return pd.read_csv(".././Dataset/online_retail.csv")
 
 @st.cache_resource
 def load_model():
@@ -16,7 +21,6 @@ def load_model():
     wcss = pickle.load(open('.././model/wcss.pkl', 'rb'))
     return kmeans, scaler, rfm, wcss
 
-dataset = load_data()
 kmeans, scaler, rfm, wcss = load_model()
 
 st.markdown("""
