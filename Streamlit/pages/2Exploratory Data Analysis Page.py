@@ -9,17 +9,13 @@ BASE_DIR = Path(__file__).resolve().parents[2]
 dataset_path = BASE_DIR / "Dataset" / "online_retail.csv"
 dataset = pd.read_csv(dataset_path)
 
-# Load Data & Model
-# @st.cache_data()
-# def load_data():
-#     return pd.read_csv(".././Dataset/online_retail.csv")
-
 @st.cache_resource
 def load_model():
-    kmeans = pickle.load(open('.././model/kmeans.pkl', 'rb'))
-    scaler = pickle.load(open('.././model/scaler.pkl', 'rb'))
-    rfm = pd.read_csv(open('.././model/rfm.csv'))
-    wcss = pickle.load(open('.././model/wcss.pkl', 'rb'))
+    model_dir = BASE_DIR / "model"
+    kmeans = pickle.load(open(model_dir / "kmeans.pkl", 'rb'))
+    scaler = pickle.load(open(model_dir / "scaler.pkl", 'rb'))
+    rfm = pd.read_csv(model_dir / "rfm.csv")
+    wcss = pickle.load(open(model_dir / "wcss.pkl", 'rb'))
     return kmeans, scaler, rfm, wcss
 
 # dataset = load_data()
